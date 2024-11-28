@@ -8,7 +8,7 @@ class loginScreen extends StatefulWidget {
 }
 
 class _loginScreenState extends State<loginScreen> {
-  var isLogin = false;
+  var isLogin = true;
   var datePicked=DateTime.now();
   TextEditingController _dateController=TextEditingController();
   void showCalendar(){
