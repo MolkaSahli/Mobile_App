@@ -1,4 +1,5 @@
 import 'package:eventify/screens/home.dart';
+import 'package:eventify/screens/addEvent.dart';
 import 'package:eventify/screens/login.dart';
 import 'package:flutter/material.dart';
 
