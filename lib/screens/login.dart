@@ -8,7 +8,7 @@ class loginScreen extends StatefulWidget {
 }
 
 class _loginScreenState extends State<loginScreen> {
-  var isLogin = false;
+  var isLogin = true;
   var datePicked=DateTime.now();
   TextEditingController _dateController=TextEditingController();
   void showCalendar(){
@@ -35,11 +35,11 @@ class _loginScreenState extends State<loginScreen> {
           if (isLogin)
           Row(
             children: [
-              Icon(Icons.person_outline,
+              const Icon(Icons.person_outline,
                   color: Color.fromRGBO(162, 14, 32, 1), size: 25),
               Container(
                 margin: EdgeInsets.only(top: 2, left: 5),
-                child: Text(
+                child: const Text(
                   'Login Account',
                   style: TextStyle(
                     color: Color.fromRGBO(162, 14, 32, 1),
@@ -52,7 +52,7 @@ class _loginScreenState extends State<loginScreen> {
           ),
           SizedBox(height: 2),
           if (isLogin)
-          Text(
+          const Text(
             'Hello, Welcome to our application!',
             style: TextStyle(
               color: Color.fromRGBO(93, 93, 93, 1),
@@ -62,20 +62,25 @@ class _loginScreenState extends State<loginScreen> {
           if (!isLogin)
           Row(
             children: [
-              Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Color.fromRGBO(162, 14, 32, 1),
-               size: 25),
-               Container(
-                margin: EdgeInsets.only(top: 2, left: 5),
-                child: Text(
-                  'New Account',
-                  style: TextStyle(
-                    color: Color.fromRGBO(162, 14, 32, 1),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+               IconButton(
+                onPressed:()=> setState(() {
+                  isLogin=!isLogin;
+                }),
+                icon:Icon(Icons.arrow_back_ios_new_rounded),
+                color: Color.fromRGBO(162, 14, 32, 1),),
+               Expanded(
+                 child: Container(
+                  margin: EdgeInsets.only(top: 2, left: 5),
+                  child:const Text(
+                    textAlign: TextAlign.center,
+                    'New Account',
+                    style: TextStyle(
+                      color: Color.fromRGBO(162, 14, 32, 1),
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
+                 ),
                ),
         ],
         ),
@@ -93,11 +98,11 @@ class _loginScreenState extends State<loginScreen> {
                             labelText: 'Full Name',
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromRGBO(162, 14, 32, 1)),
+                                    color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12)),
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromRGBO(162, 14, 32, 1)),
+                                    color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12)),
                           ),
                         ),
@@ -110,11 +115,11 @@ class _loginScreenState extends State<loginScreen> {
                             labelText: 'Email',
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromRGBO(162, 14, 32, 1)),
+                                    color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12)),
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromRGBO(162, 14, 32, 1)),
+                                    color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12))),
                       ),
                       SizedBox(height: 10),
@@ -124,11 +129,11 @@ class _loginScreenState extends State<loginScreen> {
                             labelText: 'Password',
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromRGBO(162, 14, 32, 1)),
+                                    color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12)),
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromRGBO(162, 14, 32, 1)),
+                                    color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12))),
                       ),
                       if (!isLogin)
@@ -140,11 +145,11 @@ class _loginScreenState extends State<loginScreen> {
                               labelText: 'Mobile Number',
                               enabledBorder: OutlineInputBorder(
                                   borderSide: const BorderSide(
-                                      color: Color.fromRGBO(162, 14, 32, 1)),
+                                      color: Color.fromRGBO(232, 34, 59, 1)),
                                   borderRadius: BorderRadius.circular(12)),
                               focusedBorder: OutlineInputBorder(
                                   borderSide: const BorderSide(
-                                      color: Color.fromRGBO(162, 14, 32, 1)),
+                                      color: Color.fromRGBO(232, 34, 59, 1)),
                                   borderRadius: BorderRadius.circular(12))),
                         ),
                       if (!isLogin) 
@@ -159,15 +164,16 @@ class _loginScreenState extends State<loginScreen> {
                             icon: Icon(Icons.calendar_today)),
                           labelText: 'Date of birth',
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color.fromRGBO(162, 14, 32, 1)),
+                            borderSide: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                             borderRadius: BorderRadius.circular(12)
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color.fromRGBO(162, 14, 32, 1)),
+                            borderSide: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                             borderRadius: BorderRadius.circular(12)
                           ),
                         ),
                       ),
+                      if (isLogin)
                       SizedBox(height: 7),
                       if (isLogin)
                       Row(
@@ -177,6 +183,28 @@ class _loginScreenState extends State<loginScreen> {
                         ],
                         mainAxisAlignment: MainAxisAlignment.end,
                       ),
+                      if(!isLogin)
+                      SizedBox(height: 40),
+                      if (!isLogin)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('By continuing, you agree to',
+                          style: TextStyle(fontSize: 12, color: Colors.black)),
+                      ],),
+                      if (!isLogin)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Terms of Use',
+                          style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold)),
+                          Text(' and',
+                          style: TextStyle(fontSize: 12, color: Colors.black)),
+                          Text(' Privacy Policy',
+                          style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold)),
+                      ],),
+                      if (!isLogin)
+                      SizedBox(height: 10),
                       SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: null,
@@ -204,7 +232,9 @@ class _loginScreenState extends State<loginScreen> {
                           TextButton(
                               style: TextButton.styleFrom(
                                   padding: EdgeInsets.symmetric(horizontal: 4)),
-                              onPressed: null,
+                              onPressed:()=> setState(() {
+                                isLogin=!isLogin;
+                              }),
                               child: Text(
                                 'Create Account',
                                 style: TextStyle(
