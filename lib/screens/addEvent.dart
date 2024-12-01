@@ -9,7 +9,7 @@ class Addevent extends StatefulWidget {
 
 class _MyWidgetState extends State<Addevent> {
   TimeOfDay startTime=TimeOfDay.now();
-  TextEditingController _dateController=TextEditingController();
+  final TextEditingController _dateController=TextEditingController();
   void SelectDate(){
     showDatePicker(
       context: context, 
@@ -26,18 +26,18 @@ class _MyWidgetState extends State<Addevent> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(top: 40, right: 10, left: 10,bottom: 20),
+          padding: const EdgeInsets.only(top: 40, right: 10, left: 10,bottom: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Icon(Icons.arrow_back_ios_new_rounded,
+                  const Icon(Icons.arrow_back_ios_new_rounded,
                       color: Color.fromRGBO(162, 14, 32, 1), size: 25),
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.only(top: 2, left: 5),
-                      child: Text(
+                      margin: const EdgeInsets.only(top: 2, left: 5),
+                      child: const Text(
                         textAlign: TextAlign.center,
                         'Add Event',
                         style: TextStyle(
@@ -50,10 +50,10 @@ class _MyWidgetState extends State<Addevent> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(
-                    border: Border(
+                    border: const Border(
                       bottom: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                       top: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                       right: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
@@ -61,10 +61,10 @@ class _MyWidgetState extends State<Addevent> {
                     ),
                     borderRadius: BorderRadius.circular(12)),
                 padding:
-                    EdgeInsets.only(right: 30, left: 30, top: 10, bottom: 10),
+                    const EdgeInsets.only(right: 30, left: 30, top: 10, bottom: 10),
                 child: Column(
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
@@ -73,27 +73,27 @@ class _MyWidgetState extends State<Addevent> {
                         )
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     GestureDetector(
                       onTap: null,
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            border: Border(
+                            border: const Border(
                                 top: BorderSide(width: 1, color: Colors.red),
                                 bottom: BorderSide(width: 1, color: Colors.red),
                                 left: BorderSide(width: 1, color: Colors.red),
                                 right: BorderSide(width: 1, color: Colors.red))),
                         height: 250,
                         width: double.infinity,
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
                               Icons.add_photo_alternate_rounded,
                               size: 80,
-                              color: const Color.fromRGBO(170, 170, 170, 1),
+                              color: Color.fromRGBO(170, 170, 170, 1),
                             ),
                             SizedBox(
                               height: 5,
@@ -108,13 +108,13 @@ class _MyWidgetState extends State<Addevent> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Form(
                         child: Column(
                       children: [
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
@@ -123,26 +123,26 @@ class _MyWidgetState extends State<Addevent> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           labelText: 'Enter event title',
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                               fontSize: 14,
-                              color: const Color.fromRGBO(0, 0, 0, 0.8)),
+                              color: Color.fromRGBO(0, 0, 0, 0.8)),
                         )),
-                        SizedBox(height: 20,),
-                        Row(
+                        const SizedBox(height: 20,),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
@@ -151,76 +151,76 @@ class _MyWidgetState extends State<Addevent> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           labelText: 'Enter event description',
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                               fontSize: 14,
-                              color: const Color.fromRGBO(0, 0, 0, 0.8)),
+                              color: Color.fromRGBO(0, 0, 0, 0.8)),
                         )),
-                        SizedBox(height: 20,),
-                        Row(
+                        const SizedBox(height: 20,),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                           Text('Date and Time of Start',style: TextStyle(fontSize: 20,color: Colors.black),)
                         ],),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         TextFormField(
                           controller: _dateController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
                               onPressed: SelectDate, 
-                              icon: Icon(Icons.calendar_today)),
+                              icon: const Icon(Icons.calendar_today)),
                             labelText: 'Choose Date',
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
+                              borderSide: const BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
+                              borderSide: const BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)
                             ),
                           ),
                         ),
-                         SizedBox(height: 20,),
-                        Row(
+                         const SizedBox(height: 20,),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                           Text('Date and Time of End',style: TextStyle(fontSize: 20,color: Colors.black),)
                         ],),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         TextFormField(
                           controller: _dateController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
                               onPressed: SelectDate, 
-                              icon: Icon(Icons.calendar_today)),
+                              icon: const Icon(Icons.calendar_today)),
                             labelText: 'Choose Date',
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
+                              borderSide: const BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
+                              borderSide: const BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)
                             ),
                           ),
                         ),
-                        SizedBox(height: 20,),
-                        Row(
+                        const SizedBox(height: 20,),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
@@ -229,26 +229,26 @@ class _MyWidgetState extends State<Addevent> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           labelText: 'Click Here to Choose Location',
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                               fontSize: 14,
-                              color: const Color.fromRGBO(0, 0, 0, 0.8)),
+                              color: Color.fromRGBO(0, 0, 0, 0.8)),
                         )),
-                        SizedBox(height: 20,),
-                        Row(
+                        const SizedBox(height: 20,),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
@@ -257,26 +257,26 @@ class _MyWidgetState extends State<Addevent> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           labelText: 'Click Here to Type',
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                               fontSize: 14,
-                              color: const Color.fromRGBO(0, 0, 0, 0.8)),
+                              color: Color.fromRGBO(0, 0, 0, 0.8)),
                         )),
-                        SizedBox(height: 20,),
-                        Row(
+                        const SizedBox(height: 20,),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
@@ -285,26 +285,26 @@ class _MyWidgetState extends State<Addevent> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: Color.fromRGBO(232, 34, 59, 1)),
                               borderRadius: BorderRadius.circular(12)),
                           labelText: 'Click Here to Insert a  Link',
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                               fontSize: 14,
-                              color: const Color.fromRGBO(0, 0, 0, 0.8)),
+                              color: Color.fromRGBO(0, 0, 0, 0.8)),
                         )),
-                        SizedBox(height: 20,),
-                        Row(
+                        const SizedBox(height: 20,),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             ElevatedButton(

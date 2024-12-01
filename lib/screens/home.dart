@@ -14,24 +14,24 @@ class _MyWidgetState extends State<Home> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: Icon(Icons.menu, color: Colors.black),
-        actions: [
+        leading: const Icon(Icons.menu, color: Colors.black),
+        actions: const [
           Icon(Icons.search, color: Colors.black),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // "I AM GOING TO:" Section
-              Text(
+              const Text(
                 "I AM GOING TO:",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.black, 
                 ),
               ),
               const SizedBox(height: 10),
@@ -49,23 +49,23 @@ class _MyWidgetState extends State<Home> {
                         height: 50,
                         fit: BoxFit.cover,
                       ),
-                      title: Text(
+                      title: const Text(
                         'Annual Forum',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
-                      subtitle: Text('13/11/2024 07:30 -- 16:00'),
+                      subtitle: const Text('13/11/2024 07:30 -- 16:00'),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
-                            icon: Icon(Icons.favorite_border),
+                            icon: const Icon(Icons.favorite_border),
                             onPressed: () {},
                           ),
                           IconButton(
-                            icon: Icon(Icons.more_vert),
+                            icon: const Icon(Icons.more_vert),
                             onPressed: () {},
                           ),
                         ],
@@ -85,13 +85,13 @@ class _MyWidgetState extends State<Home> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: Center(
+                child: const Center(
                   child: Text("See All Events"),
                 ),
               ),
               const SizedBox(height: 20),
               // Event Calendar Section
-              Text(
+              const Text(
                 "Event Calendar",
                 style: TextStyle(
                   fontSize: 20,
@@ -112,10 +112,10 @@ class _MyWidgetState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                            icon: Icon(Icons.arrow_back_ios),
+                            icon: const Icon(Icons.arrow_back_ios),
                             onPressed: () {},
                           ),
-                          Text(
+                          const Text(
                             "January 2023",
                             style: TextStyle(
                               fontSize: 16,
@@ -123,15 +123,15 @@ class _MyWidgetState extends State<Home> {
                             ),
                           ),
                           IconButton(
-                            icon: Icon(Icons.arrow_forward_ios),
+                            icon: const Icon(Icons.arrow_forward_ios),
                             onPressed: () {},
                           ),
                         ],
                       ),
                       GridView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 7,
                           mainAxisSpacing: 8,
                           crossAxisSpacing: 8,
