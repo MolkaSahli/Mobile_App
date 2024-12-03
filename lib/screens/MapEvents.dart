@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'functions/SearchBar.dart';
 
 class Mapevents extends StatefulWidget {
   const Mapevents({super.key});
@@ -10,6 +13,16 @@ class Mapevents extends StatefulWidget {
 class _MapeventsState extends State<Mapevents> {
   bool isExpanded = false;
 
+  void _onSearch(String query) {
+    print("Search query: $query");
+    // Add your search logic here
+  }
+
+  void _onFilterPressed() {
+    print("Filter icon pressed");
+    // Add your filter logic here
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,60 +31,9 @@ class _MapeventsState extends State<Mapevents> {
         backgroundColor: Colors.white,
         title: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Row(
-            children: [
-              // Search Bar
-              Expanded(
-                child: TextField(
-                  cursorColor: Colors.grey,
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        width: 0.5,
-                        color: Colors.grey.shade400,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: Color(0xFFA20E20),
-                        width: 2.0,
-                      ),
-                    ),
-                    hintText: 'Search',
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              // Filter Button
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.filter_alt,
-                    color: Color(0xFFA20E20),
-                    size: 25,
-                  ),
-                  onPressed: () {
-                    print("Filter icon pressed");
-                  },
-                ),
-              ),
-            ],
+          child: CustomSearchBar(
+            onSearch: _onSearch,
+            onFilterPressed: _onFilterPressed,
           ),
         ),
       ),
@@ -87,16 +49,7 @@ class _MapeventsState extends State<Mapevents> {
         child: Stack(
           children: [
             // Map Placeholder
-            Container(
-              height: double.infinity,
-              color: Colors.grey.shade300,
-              child: Center(
-                child: Text(
-                  'Map Placeholder',
-                  style: TextStyle(fontSize: 18, color: Colors.black54),
-                ),
-              ),
-            ),
+            content(),
             // Event Details Overlay
             Align(
               alignment: Alignment.bottomCenter,
@@ -112,7 +65,7 @@ class _MapeventsState extends State<Mapevents> {
                       : 270,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
                     ),
@@ -124,89 +77,108 @@ class _MapeventsState extends State<Mapevents> {
                       ),
                     ],
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Stack(
                     children: [
-                      // Title and Address
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'SUP\'COM',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              'Technological City of Communications, Raoued Road, Km 3.5 - 2083, Ariana, Tunisia',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      // Events List
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: isExpanded ? 15 : 2,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('assets/event_icon.png'),
-                              ),
-                              title: Text(
-                                'Annual Forum',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              subtitle: Text('13/11/2024 07:30 - 16:00'),
-                              trailing: IconButton(
-                                icon: Icon(Icons.add),
-                                onPressed: () {
-                                  // Add to calendar or favorites
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      // "See All Events" Button
-                      if (!isExpanded)
-                        Center(
-                          child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                isExpanded = true;
-                              });
-                            },
-                            child: Container(
-                              height: 40,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFA20E20),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'See All Events',
+                      // Content inside the card
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Title and Address
+                          const Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'SUP\'COM',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  'Technological City of Communications, Raoued Road, Km 3.5 - 2083, Ariana, Tunisia',
+                                  style: TextStyle(
                                     fontSize: 14,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          // Events List
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: isExpanded ? 15 : 2,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  leading: const CircleAvatar(
+                                    backgroundImage:
+                                        AssetImage('assets/event_icon.png'),
+                                  ),
+                                  title: const Text(
+                                    'Annual Forum',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  subtitle:
+                                      const Text('13/11/2024 07:30 - 16:00'),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.add),
+                                    onPressed: () {
+                                      // Add to calendar or favorites
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          // "See All Events" Button
+                          if (!isExpanded)
+                            Center(
+                              child: TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isExpanded = true;
+                                  });
+                                },
+                                child: Container(
+                                  height: 40,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFA20E20),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      'See All Events',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
+                        ],
+                      ),
+                      // Close Button
+                      Positioned(
+                        top: 10,
+                        right: 10,
+                        child: IconButton(
+                          icon: const Icon(Icons.close, color: Colors.black54),
+                          onPressed: () {
+                            setState(() {
+                              isExpanded = false;
+                            });
+                          },
                         ),
+                      ),
                     ],
                   ),
                 ),
@@ -218,3 +190,39 @@ class _MapeventsState extends State<Mapevents> {
     );
   }
 }
+
+Widget content() {
+  return FlutterMap(
+    options: const MapOptions(
+      initialCenter: LatLng(36.89199956170213, 10.187730981774003),
+      initialZoom: 11,
+      interactionOptions:
+          InteractionOptions(flags: ~InteractiveFlag.doubleTapZoom),
+    ),
+    children: [
+      openStreetMapTileLater,
+      MarkerLayer(markers: [
+        Marker(
+          point: const LatLng(36.89199956170213, 10.187730981774003),
+          width: 60,
+          height: 60,
+          alignment: Alignment.centerLeft,
+          child: GestureDetector(
+            onTap: () {},
+            child: const Icon(
+              Icons.location_pin,
+              size: 60,
+              color: Color(0xFFA20E20),
+            ),
+          ),
+        ),
+      ]),
+    ],
+  );
+}
+
+TileLayer get openStreetMapTileLater => TileLayer(
+      urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      subdomains: const ['a', 'b', 'c'], // OpenStreetMap's subdomains
+      userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+    );
