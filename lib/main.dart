@@ -1,3 +1,4 @@
+import 'package:eventify/screens/EventInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:eventify/screens/home.dart';
 import 'package:eventify/screens/MapEvents.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainPage(),
+      home: const EventInfo(),
     );
   }
 }
