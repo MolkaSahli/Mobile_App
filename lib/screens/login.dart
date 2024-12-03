@@ -10,7 +10,7 @@ class loginScreen extends StatefulWidget {
 class _loginScreenState extends State<loginScreen> {
   var isLogin = true;
   var datePicked=DateTime.now();
-  TextEditingController _dateController=TextEditingController();
+  final TextEditingController _dateController=TextEditingController();
   void showCalendar(){
     showDatePicker(
       context: context, 
@@ -28,7 +28,7 @@ class _loginScreenState extends State<loginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.only(top: 40, right: 10, left: 10),
+      padding: const EdgeInsets.only(top: 40, right: 10, left: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -38,7 +38,7 @@ class _loginScreenState extends State<loginScreen> {
               const Icon(Icons.person_outline,
                   color: Color.fromRGBO(162, 14, 32, 1), size: 25),
               Container(
-                margin: EdgeInsets.only(top: 2, left: 5),
+                margin: const EdgeInsets.only(top: 2, left: 5),
                 child: const Text(
                   'Login Account',
                   style: TextStyle(
@@ -50,7 +50,7 @@ class _loginScreenState extends State<loginScreen> {
               ),
             ],
           ),
-          SizedBox(height: 2),
+          const SizedBox(height: 2),
           if (isLogin)
           const Text(
             'Hello, Welcome to our application!',
@@ -66,11 +66,11 @@ class _loginScreenState extends State<loginScreen> {
                 onPressed:()=> setState(() {
                   isLogin=!isLogin;
                 }),
-                icon:Icon(Icons.arrow_back_ios_new_rounded),
-                color: Color.fromRGBO(162, 14, 32, 1),),
+                icon:const Icon(Icons.arrow_back_ios_new_rounded),
+                color: const Color.fromRGBO(162, 14, 32, 1),),
                Expanded(
                  child: Container(
-                  margin: EdgeInsets.only(top: 2, left: 5),
+                  margin: const EdgeInsets.only(top: 2, left: 5),
                   child:const Text(
                     textAlign: TextAlign.center,
                     'New Account',
@@ -84,12 +84,12 @@ class _loginScreenState extends State<loginScreen> {
                ),
         ],
         ),
-          SizedBox(height: 50,),
+          const SizedBox(height: 50,),
           Column(
             children: [
               Form(
                 child: Container(
-                  padding: EdgeInsets.only(left: 1, right: 10),
+                  padding: const EdgeInsets.only(left: 1, right: 10),
                   child: Column(
                     children: [
                       if (!isLogin)
@@ -97,16 +97,16 @@ class _loginScreenState extends State<loginScreen> {
                           decoration: InputDecoration(
                             labelText: 'Full Name',
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12)),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12)),
                           ),
                         ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextFormField(
@@ -114,30 +114,30 @@ class _loginScreenState extends State<loginScreen> {
                         decoration: InputDecoration(
                             labelText: 'Email',
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12)),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12))),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFormField(
                         obscureText: true,
                         decoration: InputDecoration(
                             labelText: 'Password',
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12)),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     color: Color.fromRGBO(232, 34, 59, 1)),
                                 borderRadius: BorderRadius.circular(12))),
                       ),
                       if (!isLogin)
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       if (!isLogin)
                         TextFormField(
                           keyboardType: TextInputType.number,
@@ -153,7 +153,7 @@ class _loginScreenState extends State<loginScreen> {
                                   borderRadius: BorderRadius.circular(12))),
                         ),
                       if (!isLogin) 
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       if (!isLogin)
                       TextFormField(
                         controller: _dateController,
@@ -161,39 +161,39 @@ class _loginScreenState extends State<loginScreen> {
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
                             onPressed: showCalendar, 
-                            icon: Icon(Icons.calendar_today)),
+                            icon: const Icon(Icons.calendar_today)),
                           labelText: 'Date of birth',
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
+                            borderSide: const BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                             borderRadius: BorderRadius.circular(12)
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
+                            borderSide: const BorderSide(color: Color.fromRGBO(232, 34, 59, 1)),
                             borderRadius: BorderRadius.circular(12)
                           ),
                         ),
                       ),
                       if (isLogin)
-                      SizedBox(height: 7),
+                      const SizedBox(height: 7),
                       if (isLogin)
-                      Row(
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
                               onPressed: null, child: Text('Forgot Password ?'))
                         ],
-                        mainAxisAlignment: MainAxisAlignment.end,
                       ),
                       if(!isLogin)
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       if (!isLogin)
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('By continuing, you agree to',
                           style: TextStyle(fontSize: 12, color: Colors.black)),
                       ],),
                       if (!isLogin)
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Terms of Use',
@@ -204,25 +204,25 @@ class _loginScreenState extends State<loginScreen> {
                           style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold)),
                       ],),
                       if (!isLogin)
-                      SizedBox(height: 10),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: null,
-                        child: Text(isLogin? 'Login' : 'Sign Up'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(162, 14, 32, 1),
+                          backgroundColor: const Color.fromRGBO(162, 14, 32, 1),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12)),
-                          fixedSize: Size(339, 55),
+                          fixedSize: const Size(339, 55),
                         ),
+                        child: Text(isLogin? 'Login' : 'Sign Up'),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       if (isLogin)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Not register yet ?',
                             style: TextStyle(
                               fontSize: 13,
@@ -231,11 +231,11 @@ class _loginScreenState extends State<loginScreen> {
                           ),
                           TextButton(
                               style: TextButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(horizontal: 4)),
+                                  padding: const EdgeInsets.symmetric(horizontal: 4)),
                               onPressed:()=> setState(() {
                                 isLogin=!isLogin;
                               }),
-                              child: Text(
+                              child: const Text(
                                 'Create Account',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
