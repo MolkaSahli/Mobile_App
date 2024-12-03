@@ -36,7 +36,6 @@ class _EventInfoState extends State<EventInfo> {
                     onPressed: () {}, // Add functionality if needed
                   ),
                 ),
-                
               ],
             ),
 
