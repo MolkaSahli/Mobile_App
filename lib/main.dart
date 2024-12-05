@@ -4,6 +4,9 @@ import 'package:eventify/screens/home.dart';
 import 'package:eventify/screens/MapEvents.dart';
 import 'package:eventify/screens/addEvent.dart';
 //import 'package:eventify/screens/profile.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const EventInfo(),
+      home: const Mapevents(),
     );
   }
 }
