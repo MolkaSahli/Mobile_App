@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventify/screens/home.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Addevent extends StatefulWidget {
@@ -8,18 +11,60 @@ class Addevent extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<Addevent> {
+  String title='';
+  String description='';
+  String dateTimeStart='';
+  String dateTimeEnd='';
+  String location='';
+  String organiser='';
+  String socialMedia='';
+  final _formKey = GlobalKey<FormState>();
   TimeOfDay startTime=TimeOfDay.now();
+  var isLoading=false;
   final TextEditingController _dateController=TextEditingController();
   void SelectDate(){
     showDatePicker(
       context: context, 
       firstDate: DateTime.now(), 
-      lastDate: DateTime(2025),
+      lastDate: DateTime(2030),
       ).then((date){
         setState(() {
           _dateController.text=date.toString().split(" ")[0];
         });
       });
+  }
+
+  void submitEventForm(
+    String title,
+    String description,
+    String dateTimeStart,
+    String dateTimeEnd,
+    String location,
+    String organiser,
+    String socialMedia,
+  ) async {
+      setState(() {
+        isLoading = true;
+      });
+       try {
+      //DocumentReference docRef = FirebaseFirestore.instance.collection('events').doc();
+      final docRef = FirebaseFirestore.instance.collection('events').doc();
+      await docRef.set({
+        'title' : title,
+        'description' : description,
+        'dateTimeStart' : dateTimeStart,
+        'dateTimeEnd' : dateTimeEnd,
+        'location' : location,
+        'organiser' : organiser,
+        'socialMedia' : socialMedia,
+        });
+      
+
+    } catch (error){
+      print(error);
+    }
+    Navigator.of(context).pushReplacementNamed( Home.routeName);
+
   }
   @override
   Widget build(BuildContext context) {
@@ -112,6 +157,7 @@ class _MyWidgetState extends State<Addevent> {
                       height: 20,
                     ),
                     Form(
+                      key: _formKey,
                         child: Column(
                       children: [
                         const Row(
@@ -127,6 +173,7 @@ class _MyWidgetState extends State<Addevent> {
                           height: 10,
                         ),
                         TextFormField(
+                          onSaved: (value) => title = value!,
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
@@ -155,6 +202,7 @@ class _MyWidgetState extends State<Addevent> {
                           height: 10,
                         ),
                         TextFormField(
+                          onSaved: (value) => description = value!,
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
@@ -177,6 +225,7 @@ class _MyWidgetState extends State<Addevent> {
                         ],),
                         const SizedBox(height: 10,),
                         TextFormField(
+                          onSaved: (value) => dateTimeStart= value!,
                           controller: _dateController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
@@ -202,6 +251,7 @@ class _MyWidgetState extends State<Addevent> {
                         ],),
                         const SizedBox(height: 10,),
                         TextFormField(
+                          onSaved: (value) => dateTimeEnd = value!,
                           controller: _dateController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
@@ -233,6 +283,7 @@ class _MyWidgetState extends State<Addevent> {
                           height: 10,
                         ),
                         TextFormField(
+                          onSaved: (value) => location = value!,
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
@@ -261,6 +312,7 @@ class _MyWidgetState extends State<Addevent> {
                           height: 10,
                         ),
                         TextFormField(
+                          onSaved: (value) => organiser= value!,
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
@@ -289,6 +341,7 @@ class _MyWidgetState extends State<Addevent> {
                           height: 10,
                         ),
                         TextFormField(
+                          onSaved: (value) => socialMedia = value!,
                             decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
@@ -304,11 +357,21 @@ class _MyWidgetState extends State<Addevent> {
                               color: Color.fromRGBO(0, 0, 0, 0.8)),
                         )),
                         const SizedBox(height: 20,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             ElevatedButton(
-                              onPressed: null,
+                              onPressed: (){
+                                _formKey.currentState!.save();
+                                submitEventForm(
+                                          title,
+                                          description,
+                                          dateTimeStart,
+                                          dateTimeEnd,
+                                          location,
+                                          organiser,
+                                          socialMedia,
+                                        );},
                               child: Text('Add')),
                               ElevatedButton(onPressed: null, child: Text('Cancel'))
                           ],

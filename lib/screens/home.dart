@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'functions/SearchBar.dart';
 
 class Home extends StatefulWidget {
+  static const routeName = '/Home_page';
   const Home({super.key});
 
   @override

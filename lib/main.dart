@@ -1,15 +1,29 @@
 import 'package:eventify/screens/EventInfo.dart';
+import 'package:eventify/screens/login.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:eventify/screens/home.dart';
 import 'package:eventify/screens/MapEvents.dart';
 import 'package:eventify/screens/addEvent.dart';
+import 'package:flutter_map/flutter_map.dart';
 //import 'package:eventify/screens/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyCSjTBnE8jepNiIiLKikTqUvchHrMPUYQI", 
+      appId: "com.example.eventify", 
+      messagingSenderId: "987084638923", 
+      projectId: "eventify-6e0f4", 
+      authDomain: "eventify-6e0f4.firebaseapp.com", 
+      storageBucket: "eventify-6e0f4.firebasestorage.app", 
+    ),
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +38,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Mapevents(),
+      home:  const MainPage(),
+      routes: {
+        Home.routeName:(context)=>Home(),
+        loginScreen.routeName:(context)=>loginScreen()
+      },
     );
   }
 }

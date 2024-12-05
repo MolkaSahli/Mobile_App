@@ -85,5 +85,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'eventify-6e0f4.firebasestorage.app',
     measurementId: 'G-4F5CKNJGZY',
   );
-
 }
