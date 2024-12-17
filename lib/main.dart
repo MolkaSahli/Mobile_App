@@ -6,10 +6,13 @@ import 'package:eventify/screens/home.dart';
 import 'package:eventify/screens/MapEvents.dart';
 import 'package:eventify/screens/addEvent.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 //import 'package:eventify/screens/profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyCSjTBnE8jepNiIiLKikTqUvchHrMPUYQI", 

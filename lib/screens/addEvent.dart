@@ -1,7 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventify/screens/cloudinary_service.dart';
 import 'package:eventify/screens/home.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class Addevent extends StatefulWidget {
   const Addevent({super.key});
@@ -9,6 +14,16 @@ class Addevent extends StatefulWidget {
   @override
   State<Addevent> createState() => _MyWidgetState();
 }
+
+//class DbServiceEvents {
+//  User? user = FirebaseAuth.instance.currentUser;
+
+//  Future<void> saveUploadedImage(Map<String, String> data)async {
+//    return FirebaseFirestore.instance
+//    .collection("events")
+//    .doc().set(data);    
+//  }
+//}
 
 class _MyWidgetState extends State<Addevent> {
   String title='';
@@ -47,9 +62,12 @@ class _MyWidgetState extends State<Addevent> {
         isLoading = true;
       });
        try {
+      FilePickerResult? _filePickerResult;
       //DocumentReference docRef = FirebaseFirestore.instance.collection('events').doc();
-      final docRef = FirebaseFirestore.instance.collection('events').doc();
-      await docRef.set({
+      Map<dynamic, dynamic>? imageData = await uploadToCloudinary(_filePickerResult);
+
+      
+      Map<String, dynamic> eventData = {
         'title' : title,
         'description' : description,
         'dateTimeStart' : dateTimeStart,
@@ -57,8 +75,11 @@ class _MyWidgetState extends State<Addevent> {
         'location' : location,
         'organiser' : organiser,
         'socialMedia' : socialMedia,
-        });
-      
+        ...imageData,
+        };
+    
+    final docRef = FirebaseFirestore.instance.collection('events').doc();
+    await docRef.set(eventData);
 
     } catch (error){
       print(error);
@@ -66,6 +87,35 @@ class _MyWidgetState extends State<Addevent> {
     Navigator.of(context).pushReplacementNamed( Home.routeName);
 
   }
+
+  FilePickerResult? _filePickerResult;
+
+  // void _openFilePicker()async{
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
+  //     allowMultiple: false,
+  //     allowedExtensions: ["jpg", "jpeg", "png"],
+  //     type: FileType.image
+  //   );
+  //   setState(() {
+  //     _filePickerResult = result;
+  //   });
+  // }
+
+
+Future<void> pickAndUploadFile() async {
+  FilePickerResult? result = await FilePicker.platform.pickFiles(
+//    allowMultiple: false,
+//    allowedExtensions: ["jpg", "jpeg", "png"],
+     type: FileType.image
+  );
+  if (result != null) {
+    await uploadToCloudinary(result);
+  } else {
+    print("User canceled file selection.");
+  }
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,15 +181,23 @@ class _MyWidgetState extends State<Addevent> {
                                 right: BorderSide(width: 1, color: Colors.red))),
                         height: 250,
                         width: double.infinity,
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.add_photo_alternate_rounded,
+                            FloatingActionButton(
+                              onPressed: () async { 
+                                 pickAndUploadFile();
+                                // if (result){
+                                //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("File uploaded successfuly.")));
+                                //   } else {
+                                //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("File can't be uploaded successfuly.")));
+                                // }
+                                },
+                              child: Icon(Icons.add_photo_alternate_rounded,
                               size: 80,
-                              color: Color.fromRGBO(170, 170, 170, 1),
-                            ),
+                              color: Color.fromRGBO(170, 170, 170, 1),),
+                             ),
                             SizedBox(
                               height: 5,
                             ),
