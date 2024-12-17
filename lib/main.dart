@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:eventify/screens/home.dart';
 import 'package:eventify/screens/MapEvents.dart';
 import 'package:eventify/screens/addEvent.dart';
-<<<<<<< HEAD
 
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
@@ -55,26 +54,6 @@ void main() async {
     }
   }
 
-=======
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-//import 'package:eventify/screens/profile.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
-  await Firebase.initializeApp(
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyCSjTBnE8jepNiIiLKikTqUvchHrMPUYQI", 
-      appId: "com.example.eventify", 
-      messagingSenderId: "987084638923", 
-      projectId: "eventify-6e0f4", 
-      authDomain: "eventify-6e0f4.firebaseapp.com", 
-      storageBucket: "eventify-6e0f4.firebasestorage.app", 
-    ),
-  );
->>>>>>> f84890f1395147462b5dd6b7a6563bcd6e7f846f
   runApp(MyApp());
 }
 
@@ -87,7 +66,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Eventify',
       theme: ThemeData(useMaterial3: true),
-      home: const loginScreen(),
+      home: const MainPage(),
     );
   }
 }

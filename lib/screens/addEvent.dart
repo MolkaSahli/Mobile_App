@@ -1,11 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventify/screens/cloudinary_service.dart';
 import 'package:eventify/screens/home.dart';
-<<<<<<< HEAD
-=======
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_core/firebase_core.dart';
->>>>>>> f84890f1395147462b5dd6b7a6563bcd6e7f846f
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
