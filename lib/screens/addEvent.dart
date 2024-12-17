@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventify/screens/home.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Addevent extends StatefulWidget {
@@ -77,8 +76,6 @@ class _MyWidgetState extends State<Addevent> {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.arrow_back_ios_new_rounded,
-                      color: Color.fromRGBO(162, 14, 32, 1), size: 25),
                   Expanded(
                     child: Container(
                       margin: const EdgeInsets.only(top: 2, left: 5),

@@ -1,28 +1,59 @@
-import 'package:eventify/screens/EventInfo.dart';
+import 'package:eventify/screens/MyEvents.dart';
+import 'package:eventify/screens/Profile.dart';
 import 'package:eventify/screens/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:eventify/screens/home.dart';
 import 'package:eventify/screens/MapEvents.dart';
 import 'package:eventify/screens/addEvent.dart';
-import 'package:flutter_map/flutter_map.dart';
-//import 'package:eventify/screens/profile.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   if (Firebase.apps.isEmpty) {
+//     await Firebase.initializeApp(
+//       options: const FirebaseOptions(
+//         apiKey: "AIzaSyCSjTBnE8jepNiIiLKikTqUvchHrMPUYQI",
+//         appId: "com.example.eventify",
+//         messagingSenderId: "987084638923",
+//         projectId: "eventify-6e0f4",
+//         authDomain: "eventify-6e0f4.firebaseapp.com",
+//         storageBucket: "eventify-6e0f4.firebasestorage.app",
+//       ),
+//     );
+//   }
+//   else{
+//      Firebase.app();
+//    }
+//   runApp(MyApp());
+// }
+
+
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyCSjTBnE8jepNiIiLKikTqUvchHrMPUYQI", 
-      appId: "com.example.eventify", 
-      messagingSenderId: "987084638923", 
-      projectId: "eventify-6e0f4", 
-      authDomain: "eventify-6e0f4.firebaseapp.com", 
-      storageBucket: "eventify-6e0f4.firebasestorage.app", 
-    ),
-  );
+
+  // Ensure Firebase is initialized only once
+  try {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyCSjTBnE8jepNiIiLKikTqUvchHrMPUYQI",
+        appId: "com.example.eventify",
+        messagingSenderId: "987084638923",
+        projectId: "eventify-6e0f4",
+        authDomain: "eventify-6e0f4.firebaseapp.com",
+        storageBucket: "eventify-6e0f4.firebasestorage.app",
+      ),
+    );
+  } catch (e) {
+    // Log if Firebase is already initialized
+    if (Firebase.apps.isNotEmpty) {
+      debugPrint("Firebase already initialized: ${Firebase.app().name}");
+    } else {
+      debugPrint("Firebase initialization error: $e");
+    }
+  }
+
   runApp(MyApp());
 }
 
@@ -34,15 +65,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eventify',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home:  const MainPage(),
-      routes: {
-        Home.routeName:(context)=>Home(),
-        loginScreen.routeName:(context)=>loginScreen()
-      },
+      theme: ThemeData(useMaterial3: true),
+      home: const loginScreen(),
     );
   }
 }
@@ -61,7 +85,7 @@ class _MainPageState extends State<MainPage> {
     const Home(),
     const Mapevents(),
     const Addevent(),
-    //ProfileScreen(),
+    const Profile()
   ];
 
   @override
